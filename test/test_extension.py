@@ -11,6 +11,22 @@ def test_monospace():
     assert md == "<p>foo <pre>bar</pre> quz</p>"
 
 
+def test_monospace_with_html():
+    text = "foo {{bar<br>}}"
+
+    md = markdown.markdown(text, extensions=[JiraWikiExtension()])
+
+    assert md == "<p>foo <pre>bar&lt;br&gt;</pre>\n</p>"
+
+
+def test_monospace_with_markdown():
+    text = "foo {{*bar*}}"
+
+    md = markdown.markdown(text, extensions=[JiraWikiExtension()])
+
+    assert md == "<p>foo <pre>*bar*</pre>\n</p>"
+
+
 def test_code():
     text = "foo\n{code}\nbar\n{code}"
 
