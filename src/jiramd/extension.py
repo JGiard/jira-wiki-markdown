@@ -3,8 +3,6 @@ from markdown.extensions import Extension
 from jiramd.code import code_processor
 from jiramd.monospace import monospace_processor
 
-MONOSPACE_RE = r'(\{\{)(.+?)\}\}'
-
 
 class JiraWikiExtension(Extension):
     def extendMarkdown(self, md):
