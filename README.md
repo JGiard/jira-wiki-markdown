@@ -3,5 +3,6 @@
 Adds support for :
  * {{monospace text}}
  * {code} code blocks {code}
+ * uses jira \*strong\* and \_emphasis\_ markup
 
 Does not support multi-paragraph code blocks (double newline in a code block).

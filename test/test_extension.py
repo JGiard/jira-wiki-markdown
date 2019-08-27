@@ -49,3 +49,19 @@ def test_code_with_markdown():
     md = markdown.markdown(text, extensions=[JiraWikiExtension()])
 
     assert md == "<p>foo\n<pre><code>\n*bar*\n</code></pre>\n</p>"
+
+
+def test_jira_strong():
+    text = '*foo*'
+
+    md = markdown.markdown(text, extensions=[JiraWikiExtension()])
+
+    assert md == '<p><strong>foo</strong></p>'
+
+
+def test_jira_emphasis():
+    text = '_foo_'
+
+    md = markdown.markdown(text, extensions=[JiraWikiExtension()])
+
+    assert md == '<p><em>foo</em></p>'
