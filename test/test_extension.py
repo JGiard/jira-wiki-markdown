@@ -65,3 +65,11 @@ def test_jira_emphasis():
     md = markdown.markdown(text, extensions=[JiraWikiExtension()])
 
     assert md == '<p><em>foo</em></p>'
+
+
+def test_link():
+    text = '[foo|https://test.org/]'
+
+    md = markdown.markdown(text, extensions=[JiraWikiExtension()])
+
+    assert md == '<p><a href="https://test.org/">foo</a></p>'
