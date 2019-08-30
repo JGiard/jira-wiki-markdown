@@ -67,6 +67,14 @@ def test_jira_emphasis():
     assert md == '<p><em>foo</em></p>'
 
 
+def test_jira_emphasis_unspaced():
+    text = 'this_foo_bar'
+
+    md = markdown.markdown(text, extensions=[JiraWikiExtension()])
+
+    assert md == '<p>this_foo_bar</p>'
+
+
 def test_link():
     text = '[foo|https://test.org/]'
 
