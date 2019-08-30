@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(name='jira-wiki-md',
-      version='0.4',
+      version='0.4.1',
       author='Jean Giard',
       license='LGPL',
       classifier=[
