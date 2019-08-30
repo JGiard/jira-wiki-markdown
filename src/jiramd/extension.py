@@ -5,8 +5,8 @@ from jiramd.code import code_processor
 from jiramd.link import link_processor
 from jiramd.monospace import monospace_processor
 
-STRONG_RE = r'(?<!\S)(\*)([^\*]+)\1(?!\S)'
-EMPHASIS_RE = r'(?<!\S)(_)(.+?)\1(?!\S)'
+STRONG_RE = r'(?<!\w)(\*)([^\*]+)\1(?!\w)'
+EMPHASIS_RE = r'(?<!\w)(_)(.+?)\1(?!\w)'
 
 
 class JiraWikiExtension(Extension):
