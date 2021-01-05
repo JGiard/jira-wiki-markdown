@@ -32,7 +32,7 @@ def test_code():
 
     md = markdown.markdown(text, extensions=[JiraWikiExtension()])
 
-    assert md == "<p>foo\n<pre><code>\nbar\n</code></pre>\n</p>"
+    assert md == "<p>foo</p>\n<pre><code>\nbar\n</code></pre>"
 
 
 def test_code_with_html():
@@ -40,7 +40,7 @@ def test_code_with_html():
 
     md = markdown.markdown(text, extensions=[JiraWikiExtension()])
 
-    assert md == "<p>foo\n<pre><code>\nbar&lt;br&gt;\n</code></pre>\n</p>"
+    assert md == "<p>foo</p>\n<pre><code>\nbar&lt;br&gt;\n</code></pre>"
 
 
 def test_code_with_markdown():
@@ -48,7 +48,7 @@ def test_code_with_markdown():
 
     md = markdown.markdown(text, extensions=[JiraWikiExtension()])
 
-    assert md == "<p>foo\n<pre><code>\n*bar*\n</code></pre>\n</p>"
+    assert md == "<p>foo</p>\n<pre><code>\n*bar*\n</code></pre>"
 
 
 def test_jira_strong():
@@ -89,3 +89,11 @@ def test_link():
     md = markdown.markdown(text, extensions=[JiraWikiExtension()])
 
     assert md == '<p><a href="https://test.org/">foo</a></p>'
+
+
+def test_code_in_html():
+    text = """<div>{code}<span>foo</span>{code}</div>"""
+
+    md = markdown.markdown(text, extensions=[JiraWikiExtension()])
+
+    assert md == '<div><pre><code>&lt;span&gt;foo&lt;/span&gt;</code></pre></div>'

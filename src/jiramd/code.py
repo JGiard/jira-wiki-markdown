@@ -1,15 +1,19 @@
-from markdown.inlinepatterns import InlineProcessor
-from markdown.util import etree, code_escape, AtomicString
+from typing import List
 
-CODE_PATTERN = r'(\{code\})(.+?)\1'
+from markdown.preprocessors import Preprocessor
+from markdown.util import code_escape
 
-
-class CodeProcessor(InlineProcessor):
-    def handleMatch(self, m, data):
-        pre = etree.Element('pre')
-        code = etree.SubElement(pre, 'code')
-        code.text = AtomicString(code_escape(m.group(2)))
-        return pre, m.start(0), m.end(0)
+CODE_PATTERN = r'\{code\}(.+?)\{code\}'
 
 
-code_processor = CodeProcessor(CODE_PATTERN)
+class CodeProcessor(Preprocessor):
+    def run(self, lines: List[str]) -> List[str]:
+        text = '\n'.join(lines)
+        while text.count('{code}') >= 2:
+            before, _, tail = text.partition('{code}')
+            inside, _, after = tail.partition('{code}')
+            text = '{}<pre><code>{}</code></pre>{}'.format(before, code_escape(inside), after)
+        return text.split('\n')
+
+
+code_processor = CodeProcessor()
