@@ -1,12 +1,14 @@
+from xml.etree import ElementTree
+
 from markdown.inlinepatterns import InlineProcessor
-from markdown.util import etree, code_escape, AtomicString
+from markdown.util import code_escape, AtomicString
 
 MONOSPACE_PATTERN = r'\{\{(.+?)\}\}'
 
 
 class MonospaceProcessor(InlineProcessor):
     def handleMatch(self, m, data):
-        pre = etree.Element('code')
+        pre = ElementTree.Element('code')
         pre.text = AtomicString(code_escape(m.group(1)))
         return pre, m.start(0), m.end(0)
 
